@@ -61,7 +61,7 @@ public class CircularBuffer  {
 
         //Legg til elementer fra values[] til buffer
         for(int i = 0; i< values.length; ) {
-            for (int j = 0; j < 3; j++) {
+            for (int j = 0; j < 6; j++) {
                 if(i+ j < values.length  ){
                     buffer.pushBack(values[i + j]);
                 }
@@ -74,7 +74,7 @@ public class CircularBuffer  {
                 System.out.print(buffer.popFront());
             }
             System.out.println();
-            i = i + 3;
+            i = i + 6;
         }
     }
 }
