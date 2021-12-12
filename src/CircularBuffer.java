@@ -13,11 +13,13 @@ public class CircularBuffer  {
     int size;
     int head; // Peker til startetn av køen
     int tail; // Peker til slutten av køen
+    int count; // antall elementer i køen nå
      CircularBuffer(int size){
          this.buffer = new char[size];
          this.size = size;
          this.head = 0;
          this.tail = 0;
+         this.count = 0;
      }
 
      // For et sånn buffer så fungerer det som en kø: en sirkulør kø og for disse køene
@@ -29,15 +31,47 @@ public class CircularBuffer  {
 
     // La oss starte med den funkjsonen å legge bakerst
     void pushBack(char value) {
+         if(count() > size ) {
+             throw new IndexOutOfBoundsException();
+         }
          buffer[tail] = value;
          tail = (tail+1) % size;
+         count++;
     }
 
     //funksjonen som tar ut først i køen
     char popFront() {
+         if(count() <= 0){
+             throw new IndexOutOfBoundsException();
+         }
          char retVal = buffer[head];
          head = (head+1) % size;
+         count = count - 1;
          return retVal;
     }
 
+    int count(){
+         return count;
+    }
+
+    //For test purposes
+    public static void main(String[] args) {
+        CircularBuffer buffer = new CircularBuffer(6);
+        char [] values = "ABCDEFGHIJKLMNOPQRSTUVXWYZ".toCharArray();
+
+        //Legg til elementer fra values[] til buffer
+        for(int i = 0; i< values.length; ) {
+            for (int j = 0; j < 3; j++) {
+                buffer.pushBack(values[i + j]);
+            }
+
+
+            //Ta ut alle elementer fra bufferet
+            while (buffer.count() > 0) {
+                System.out.print(buffer.popFront());
+                System.out.println();
+            }
+            i = i + 3;
+        }
+    }
 }
