@@ -62,15 +62,18 @@ public class CircularBuffer  {
         //Legg til elementer fra values[] til buffer
         for(int i = 0; i< values.length; ) {
             for (int j = 0; j < 3; j++) {
-                buffer.pushBack(values[i + j]);
+                if(i+ j < values.length  ){
+                    buffer.pushBack(values[i + j]);
+                }
+
             }
 
 
             //Ta ut alle elementer fra bufferet
             while (buffer.count() > 0) {
                 System.out.print(buffer.popFront());
-                System.out.println();
             }
+            System.out.println();
             i = i + 3;
         }
     }
