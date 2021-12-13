@@ -46,6 +46,15 @@ public class BinaryTree {
         }
 
     }
+    static void printPreOrder (BinaryTreeNode node) {
+        if (node == null ){
+            return;
+        }
+        System.out.print(node.value + " ");
+        printPreOrder(node.left_child);
+        printPreOrder(node.right_child);
+    }
+
 
     public static void main (String [] args) {
         //Legger til rot - noden (Nivå 0)
@@ -75,7 +84,10 @@ public class BinaryTree {
         BinaryTreeNode n = g.addLeftChild('N');
         BinaryTreeNode o = g.addRightChild('O');
 
-        //Kall funksjonen vår
-        printLevelOrder(root);
+        //Kall funksjonen vår (Nivå Orden)
+        //  printLevelOrder(root);
+
+        //Kall på funksjonen vår nivå pre-orden
+        printPreOrder(root);
     }
 }
