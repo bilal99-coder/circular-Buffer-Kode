@@ -72,6 +72,27 @@ public class BinaryTree {
         System.out.println(node.value);
 
     }
+
+   static void printPreOrdenNonRecursive(BinaryTreeNode root) {
+        ArrayDeque<BinaryTreeNode> stack = new ArrayDeque<BinaryTreeNode>();
+        stack.addLast(root);
+
+        while(!stack.isEmpty()) {
+            BinaryTreeNode current = stack.removeLast();
+
+            if(current.right_child != null) {
+                stack.addLast(current.right_child);
+            }
+            if(current.left_child != null) {
+                stack.addLast(current.left_child);
+            }
+
+
+
+            System.out.println(current.value  + " ");
+        }
+   }
+
     public static void main (String [] args) {
         //Legger til rot - noden (Nivå 0)
         BinaryTreeNode root = new BinaryTreeNode('A');
@@ -114,5 +135,10 @@ public class BinaryTree {
         //Kall på funksjonen vår( post-orden)
         System.out.println("\nPost Order: ");
         printPostOrden(root);
+
+        //
+        System.out.println("Pre order non recursive");
+        printPreOrdenNonRecursive(root);
+        System.out.println();
     }
 }
