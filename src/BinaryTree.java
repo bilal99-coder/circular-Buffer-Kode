@@ -1,3 +1,7 @@
+import jdk.incubator.vector.VectorOperators;
+
+import java.util.ArrayDeque;
+
 public class BinaryTree {
 
     static class BinaryTreeNode{
@@ -19,6 +23,28 @@ public class BinaryTree {
         BinaryTreeNode  addRightChild(char value){
             this.right_child = new BinaryTreeNode(value);
             return this.right_child;
+        }
+
+    }
+
+    void printLevelOrder (BinaryTreeNode root) {
+        ArrayDeque<BinaryTreeNode> queue = new ArrayDeque<BinaryTreeNode>();
+
+        //Legg til rot-noden.
+        queue.addFirst(root);
+        while(! queue.isEmpty()){
+            //1. Ta ut første fra køen
+            BinaryTreeNode current = queue.removeFirst();
+            //2. Legg til current sine to barn til køen
+            if(current.left_child != null) {
+                queue.addLast(current.left_child);
+            }
+            if(current.right_child != null) {
+                queue.addLast(current.right_child);
+            }
+
+            //3. Skriv ut
+            System.out.println(current.value + " ");
         }
 
     }
