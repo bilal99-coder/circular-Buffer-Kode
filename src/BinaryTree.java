@@ -1,5 +1,3 @@
-import jdk.incubator.vector.VectorOperators;
-
 import java.util.ArrayDeque;
 
 public class BinaryTree {
@@ -27,7 +25,7 @@ public class BinaryTree {
 
     }
 
-    void printLevelOrder (BinaryTreeNode root) {
+    static void printLevelOrder (BinaryTreeNode root) {
         ArrayDeque<BinaryTreeNode> queue = new ArrayDeque<BinaryTreeNode>();
 
         //Legg til rot-noden.
@@ -77,5 +75,7 @@ public class BinaryTree {
         BinaryTreeNode n = g.addLeftChild('N');
         BinaryTreeNode o = g.addRightChild('O');
 
+        //Kall funksjonen vår
+        printLevelOrder(root);
     }
 }
